@@ -16,6 +16,7 @@ public class InitializeUpdateResultEntity {
 
     static {
         initializeResultEntity();
+        System.out.println("Jaga");
     }
 
     public static void initializeResultEntity() {

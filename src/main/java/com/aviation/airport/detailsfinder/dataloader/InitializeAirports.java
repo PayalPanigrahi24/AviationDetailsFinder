@@ -34,8 +34,6 @@ public class InitializeAirports {
     }
 
     public static void initializeAirportMap()  {
-
-
         try {
             Path path = Paths.get(ClassLoader.getSystemResource("files/airports.csv").toURI());
             List<CsvBean> listOfAirports = CsvToBeanParser.parseCsvToObject(path, Airports.class);
