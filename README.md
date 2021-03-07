@@ -49,7 +49,7 @@ To realize the above requirements, 2 Springboot Rest API's have been implemented
 ## Swagger Integrration
 - Swagger 2 has been integrated. URL for UI: http://localhost:8080/swagger-ui.html#/
   
-- ![Optional Text](/image/swagger.png)
+![Optional Text](/image/swagger.png)
 
 ## Steps to run the application
 
@@ -58,7 +58,8 @@ To realize the above requirements, 2 Springboot Rest API's have been implemented
 - import the project in IDE  and run spring-boot:Run command
   Use Postman to call the post method : http://localhost:8080/airport/fetchairportandrunwaysforcountry
   Enter the body like below for post method:
-- ![Optional Text](/image/postman.png)  
+   
+![Optional Text](/image/postman.png)  
 
   ### Step -2 :
 - Clone the project, we assume Maven and java 8 has laredy been installed in your system.
