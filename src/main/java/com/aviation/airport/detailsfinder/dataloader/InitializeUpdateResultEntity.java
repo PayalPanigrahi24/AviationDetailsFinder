@@ -14,11 +14,10 @@ public class InitializeUpdateResultEntity {
     public static Map<String, ResultEntity> resultEntityToCodeMap = new HashMap<>();
     public static Map<String, ResultEntity> resultEntityToNameMap = new HashMap<>();
 
-    static {
-        initializeResultEntity();
-        System.out.println("Jaga");
-    }
-
+    /**
+     * This method initializes the result entity map
+     * It holds the data per every given country to airport and runways list
+     */
     public static void initializeResultEntity() {
         List<CsvBean> countriesList = InitializeCountries.listOfCountries;
         Map<String, List<Airports>> airportMap = InitializeAirports.airportMap;

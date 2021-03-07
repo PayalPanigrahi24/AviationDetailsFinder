@@ -3,6 +3,9 @@ package com.aviation.airport.detailsfinder.bean;
 import com.opencsv.bean.CsvBindByPosition;
 import lombok.Data;
 
+/**
+ * Class that holds all the columns of the Runways Class
+ */
 @Data
 public class Runways extends CsvBean {
 

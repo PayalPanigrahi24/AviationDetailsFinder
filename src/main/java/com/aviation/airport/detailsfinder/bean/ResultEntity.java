@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * Response Class that holds all the return parameters for an incoming API request
+ */
 @Data
 public class ResultEntity {
 

@@ -2,16 +2,10 @@ package com.aviation.airport.detailsfinder.dataloader;
 
 import com.aviation.airport.detailsfinder.bean.CsvBean;
 import com.aviation.airport.detailsfinder.bean.Runways;
-import com.opencsv.CSVReader;
-import com.opencsv.bean.ColumnPositionMappingStrategy;
-import com.opencsv.bean.CsvToBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -31,23 +25,27 @@ public class InitializeRunways {
     private InitializeRunways() {
 
     }
-
-    static {
-        initializeRunwayMap();
-    }
-
-
+    /**
+     * This method loads the csv of runways to a list of runways
+     */
     public static void initializeRunwayMap() {
 
         try {
             Path path = Paths.get(ClassLoader.getSystemResource("files/runways.csv").toURI());
             List<CsvBean> listOfRunwayBean = CsvToBeanParser.parseCsvToObject(path, Runways.class);
             loadRunwayMap(listOfRunwayBean);
+            LOGGER.info("Loaded data for Countries Map");
         } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
+            LOGGER.error("File not found to csv reader {} ", e.getMessage());
+
         }
     }
 
+    /**
+     * This method loads the list of Runways to the static Hashmap
+     *
+     * @param listOfRunways listOfRunways
+     */
     private static void loadRunwayMap(List<CsvBean> listOfRunways) {
         listOfRunways.stream()
                 .forEach(n -> {

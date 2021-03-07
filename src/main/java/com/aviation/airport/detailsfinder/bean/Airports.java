@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * Class that holds all the parameters of the airports
+ * Class that holds all the columns of the airport Class
  */
 @Data
 public class Airports extends CsvBean{
