@@ -27,19 +27,8 @@ public class DetailsFinderApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(DetailsFinderApplication.class, args);
-        loadAllData();
-        LOGGER.info("Application has loaded all data from the CSV");
-    }
+            }
 
-    /**
-     * This method loads all the data from the csv file
-     * ans store in static memory location
-     */
-    private static void loadAllData() {
-        initializeAirportMap();
-        initializeCountryList();
-        initializeRunwayMap();
-        initializeResultEntity();
-    }
+
 
 }

@@ -42,14 +42,7 @@ class AirportControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        InitializeCountries.initializeCountryList();
-        InitializeRunways.initializeRunwayMap();
-        InitializeAirports.initializeAirportMap();
-        InitializeUpdateResultEntity.initializeResultEntity();
-    }
-
+    
     /**
      * This method retrives all details of runways of the airports for a given
      * fuzzy or partial country name.
@@ -69,8 +62,7 @@ class AirportControllerTest {
                 .andExpect(jsonPath("$.code").value("ZW"))
                 .andExpect(jsonPath("$.name").value("Zimbabwe"))
                 .andExpect(jsonPath("$.airportsList").exists())
-                .andExpect(jsonPath("$.airportsList", hasSize(139)))
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(jsonPath("$.airportsList", hasSize(139)));
 
     }
 
@@ -90,7 +82,7 @@ class AirportControllerTest {
         ).andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.finalmessage").value("Please enter a valid Country code or name"))
-                .andDo(MockMvcResultHandlers.print());
+                ;
 
     }
 
@@ -114,9 +106,7 @@ class AirportControllerTest {
                 .andExpect(jsonPath("$.code").value("AG"))
                 .andExpect(jsonPath("$.name").value("Antigua and Barbuda"))
                 .andExpect(jsonPath("$.airportsList").exists())
-                .andExpect(jsonPath("$.airportsList", hasSize(4)))
-                .andDo(MockMvcResultHandlers.print());
-
+                .andExpect(jsonPath("$.airportsList", hasSize(4)));
     }
 
     /**
@@ -137,8 +127,7 @@ class AirportControllerTest {
                 .andExpect(jsonPath("$.code").value("AD"))
                 .andExpect(jsonPath("$.name").value("Andorra"))
                 .andExpect(jsonPath("$.airportsList").exists())
-                .andExpect(jsonPath("$.airportsList", hasSize(2)))
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(jsonPath("$.airportsList", hasSize(2)));
 
     }
 
@@ -161,8 +150,7 @@ class AirportControllerTest {
                 .andExpect(jsonPath("$.code").value("AD"))
                 .andExpect(jsonPath("$.name").value("Andorra"))
                 .andExpect(jsonPath("$.airportsList").exists())
-                .andExpect(jsonPath("$.airportsList", hasSize(2)))
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(jsonPath("$.airportsList", hasSize(2)));
 
     }
 
@@ -185,8 +173,7 @@ class AirportControllerTest {
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.code").value("ZW"))
                 .andExpect(jsonPath("$.name").value("Zimbabwe"))
-                .andExpect(jsonPath("$.airportsList").exists())
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(jsonPath("$.airportsList").exists());
 
     }
 
@@ -203,8 +190,7 @@ class AirportControllerTest {
                 ("/airport/gettoptencountrieswithairports"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.US.code").value("US"))
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(jsonPath("$.US.code").value("US"));
     }
 
 }

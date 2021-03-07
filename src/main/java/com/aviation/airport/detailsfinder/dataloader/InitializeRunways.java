@@ -22,8 +22,8 @@ public class InitializeRunways {
 
     public static Map<Integer, List<Runways>> runwayMap = new HashMap<>();
 
-    private InitializeRunways() {
-
+    static{
+        initializeRunwayMap();
     }
     /**
      * This method loads the csv of runways to a list of runways

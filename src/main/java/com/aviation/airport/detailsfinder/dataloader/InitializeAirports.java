@@ -22,6 +22,10 @@ public class InitializeAirports {
 
     public static Map<String, List<Airports>> airportMap = new HashMap<>();
 
+    static{
+        initializeAirportMap();
+    }
+
     /**
      * This method loads the csv of airport to a list
      */

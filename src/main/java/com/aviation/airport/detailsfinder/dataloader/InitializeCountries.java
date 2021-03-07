@@ -24,8 +24,8 @@ public class InitializeCountries {
     public static Map<String, Countries> countryCodeToCountryMap = new HashMap<>();
     public static List<CsvBean> listOfCountries = new ArrayList<>();
 
-    private InitializeCountries() {
-
+    static{
+        initializeCountryList();
     }
 
     /**

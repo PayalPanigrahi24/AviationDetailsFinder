@@ -1,6 +1,8 @@
 package com.aviation.airport.detailsfinder.dataloader;
 
 import com.aviation.airport.detailsfinder.bean.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -9,10 +11,15 @@ import java.util.Map;
 
 @Component
 public class InitializeUpdateResultEntity {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(InitializeUpdateResultEntity.class);
 
     public static Map<String, ResultEntity> resultEntityToCodeMap = new HashMap<>();
     public static Map<String, ResultEntity> resultEntityToNameMap = new HashMap<>();
+
+    static{
+        initializeResultEntity();
+        LOGGER.info("Application has loaded all data from the CSV");
+    }
 
     /**
      * This method initializes the result entity map

@@ -55,17 +55,21 @@ To realize the above requirements, 2 Springboot Rest API's have been implemented
 
 - Clone the project. You can follow either step 1 or step 2 
   ### Step -1: We assume you have either Eclipse or intellij IDE installed.
-- import the project in IDE  and run spring-boot:Run command
-  Use Postman to call the post method : http://localhost:8080/airport/fetchairportandrunwaysforcountry
-  Enter the body like below for post method:
+- import the project in IDE  and run the command 1) mvn clean install 2) spring-boot:Run command
+- Wait(It may take 2 to 3 minutes to initialize the result map by parsing the CSV , which is one time activity) till console prints " Tomcat started on port(s): 8080 (http) with context path "
+- Use Below URLS to realize the API.
+- Use Postman to call the post method : http://localhost:8080/airport/fetchairportandrunwaysforcountry
+- Enter the body like below for post method:
    
 ![Optional Text](/image/postman.png)  
 
   ### Step -2 :
 - Clone the project, we assume Maven and java 8 has laredy been installed in your system.
-- Run the command "mvn clean install"
+- Run the command "mvn clean install" on pom level.
 - Navigate to target folder
 - Run the Command "java -jar details-finder-0.0.1-SNAPSHOT.jar"
+- Wait(It may take 2 to 3 minutes to initialize the result map by parsing the CSV , which is one time activity) till console prints " Tomcat started on port(s): 8080 (http) with context path "
+- Use Below URLS to realize the API.
  ### URls
 - http://localhost:8080/airport/gettoptencountrieswithairports
 - http://localhost:8080/airport/fetchairportandrunwaysforcountry
