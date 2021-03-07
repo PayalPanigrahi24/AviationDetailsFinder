@@ -51,7 +51,7 @@ To realize the above requirements, 2 Springboot Rest API's have been implemented
   
 ![Optional Text](/image/swagger.png)
 
-## Steps to run the application
+## Steps to run the application( 3 Ways)
 
 - Clone the project. You can follow either step 1 or step 2 
   ### Step -1: We assume you have either Eclipse or intellij IDE installed.
@@ -63,11 +63,20 @@ To realize the above requirements, 2 Springboot Rest API's have been implemented
    
 ![Optional Text](/image/postman.png)  
 
-  ### Step -2 :
+  ### Step -2 : Using maven and command prompt
 - Clone the project, we assume Maven and java 8 has laredy been installed in your system.
 - Run the command "mvn clean install" on pom level.
 - Navigate to target folder
 - Run the Command "java -jar details-finder-0.0.1-SNAPSHOT.jar"
+- Wait(It may take 2 to 3 minutes to initialize the result map by parsing the CSV , which is one time activity) till console prints " Tomcat started on port(s): 8080 (http) with context path "
+- Use Below URLS to realize the API.
+
+  ### Step -3 : Using Docker
+- Clone the project, we assume Maven and java 8 has laredy been installed in your system.
+- Run the command "mvn clean install" on pom level.
+- Run the command "docker build -t airport-app ."
+- Run the command "docker images" : To view the image
+- Run the command "docker run -p 8080:8080 airport-app"
 - Wait(It may take 2 to 3 minutes to initialize the result map by parsing the CSV , which is one time activity) till console prints " Tomcat started on port(s): 8080 (http) with context path "
 - Use Below URLS to realize the API.
  ### URls
