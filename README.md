@@ -53,7 +53,7 @@ To realize the above requirements, 2 Springboot Rest API's have been implemented
 
 ## Steps to run the application( 3 Ways)
 
-- Clone the project. You can follow either step 1 or step 2 
+- Clone the project. You can follow any one of the below 3 Steps.
   ### Step -1: We assume you have either Eclipse or intellij IDE installed.
 - import the project in IDE  and run the command 1) mvn clean install 2) spring-boot:Run command
 - Wait(It may take 2 to 3 minutes to initialize the result map by parsing the CSV , which is one time activity) till console prints " Tomcat started on port(s): 8080 (http) with context path "
