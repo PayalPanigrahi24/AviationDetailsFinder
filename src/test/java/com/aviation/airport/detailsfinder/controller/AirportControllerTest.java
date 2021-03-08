@@ -42,7 +42,7 @@ class AirportControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    
+
     /**
      * This method retrives all details of runways of the airports for a given
      * fuzzy or partial country name.
@@ -81,8 +81,9 @@ class AirportControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.finalmessage").value("Please enter a valid Country code or name"))
-                ;
+                .andExpect(jsonPath("$.httpStatus").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.errormessage").value("Invalid fuzzy code, no possible countries found"))
+        ;
 
     }
 
@@ -110,8 +111,31 @@ class AirportControllerTest {
     }
 
     /**
+     * This method returns a error message if the entered country name is invalid
+     *
+     * @throws Exception that occurs during the test case execution
+     */
+    @Test
+    void fetchAllRunwaysFor_InvalidCountryCode_Test() throws Exception {
+        mockMvc.perform(post("/airport/fetchairportandrunwaysforcountry")
+                .content("{\n" +
+                        "\"countrycode\":\"ABCD\",\n" +
+                        "\"countryname\":\" \"\n" +
+                        "}")
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.httpStatus").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.errormessage").
+                        value("Please enter a valid country code or name"))
+        ;
+    }
+
+
+    /**
      * It checks that the api returns a valid response for a given country Name
      * Here country is taken as empty
+     *
      * @throws Exception that occurs during the test case execution
      */
     @Test

@@ -32,14 +32,14 @@ public class AirportController {
     /**
      * This method fetches all runways in the airports of a given country
      * @param requestEntity contains input data of either country code or name
-     * @return ResponseEntity<ResultEntity> based on the received country code or name
+     * @return ResponseEntity<Object> based on the received country code or name
      */
-    @ApiOperation(value = "View a the list of airport and runways for the asked country",response = ResultEntity.class)
+    @ApiOperation(value = "View a the list of airport and runways for the asked country",response = Object.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved the list")
       })
     @PostMapping(path = "/fetchairportandrunwaysforcountry", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<ResultEntity> fetchAirportAndRunwaysForCountry(@RequestBody RequestEntity requestEntity) {
+    public ResponseEntity<Object> fetchAirportAndRunwaysForCountry(@RequestBody RequestEntity requestEntity) {
 
         return airportWithRunwaysPerCountryService.getRunwaysAndAirportsForGivenCountrySpec(requestEntity);
     }

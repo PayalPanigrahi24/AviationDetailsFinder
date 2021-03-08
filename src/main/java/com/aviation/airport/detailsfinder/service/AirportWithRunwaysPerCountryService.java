@@ -4,7 +4,9 @@ import com.aviation.airport.detailsfinder.bean.RequestEntity;
 import com.aviation.airport.detailsfinder.bean.ResultEntity;
 import com.aviation.airport.detailsfinder.dataloader.InitializeCountries;
 import com.aviation.airport.detailsfinder.dataloader.InitializeUpdateResultEntity;
+import com.aviation.airport.detailsfinder.exception.ApiError;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,7 @@ public class AirportWithRunwaysPerCountryService {
      * @param requestEntity input specifications received
      * @return ResponseEntity<ResultEntity> based on the input parameters
      */
-    public ResponseEntity<ResultEntity> getRunwaysAndAirportsForGivenCountrySpec(RequestEntity requestEntity) {
+    public ResponseEntity<Object> getRunwaysAndAirportsForGivenCountrySpec(RequestEntity requestEntity) {
 
         // Checks If Country code is valid and is not null
         if (StringUtils.isNotBlank(requestEntity.getCountrycode()) &&
@@ -51,9 +53,12 @@ public class AirportWithRunwaysPerCountryService {
             }
 
         } else {
-            ResultEntity ent = new ResultEntity();
-            ent.setFinalmessage("Please enter a valid Country code or name");
-            return ResponseEntity.ok(ent);
+
+            ApiError apiError = new ApiError();
+            apiError.setErrormessage("Please enter a valid country code or name");
+            apiError.setHttpStatus(HttpStatus.BAD_REQUEST);
+            return ResponseEntity
+                    .ok(apiError);
         }
     }
 
@@ -63,7 +68,7 @@ public class AirportWithRunwaysPerCountryService {
      * @param requestEntity input parameters for the API
      * @return ResponseEntity<ResultEntity> returns possible exisiting countries else returns a valid error message
      */
-    public ResponseEntity<ResultEntity> getRunwaysAndAirportsForFuzzyCountry(RequestEntity requestEntity) {
+    public ResponseEntity<Object> getRunwaysAndAirportsForFuzzyCountry(RequestEntity requestEntity) {
 
         Map<String, String> nilst = InitializeCountries.countryNameToCountryCodeMap.entrySet()
                 .stream()
@@ -89,9 +94,11 @@ public class AirportWithRunwaysPerCountryService {
             );
             return ResponseEntity.ok(res);
         } else {
-            ResultEntity ent = new ResultEntity();
-            ent.setFinalmessage("Please enter a valid Country code or name");
-            return ResponseEntity.ok(ent);
+            ApiError apiError = new ApiError();
+            apiError.setErrormessage("Invalid fuzzy code, no possible countries found");
+            apiError.setHttpStatus(HttpStatus.BAD_REQUEST);
+            return ResponseEntity
+                    .ok(apiError);
         }
 
     }

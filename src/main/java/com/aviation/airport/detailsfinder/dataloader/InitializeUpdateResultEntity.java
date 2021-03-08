@@ -16,7 +16,7 @@ public class InitializeUpdateResultEntity {
     public static Map<String, ResultEntity> resultEntityToCodeMap = new HashMap<>();
     public static Map<String, ResultEntity> resultEntityToNameMap = new HashMap<>();
 
-    static{
+    static {
         initializeResultEntity();
         LOGGER.info("Application has loaded all data from the CSV");
     }

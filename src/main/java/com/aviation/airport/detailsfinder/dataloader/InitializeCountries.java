@@ -2,6 +2,7 @@ package com.aviation.airport.detailsfinder.dataloader;
 
 import com.aviation.airport.detailsfinder.bean.Countries;
 import com.aviation.airport.detailsfinder.bean.CsvBean;
+import com.aviation.airport.detailsfinder.exception.CsvParserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,13 +26,17 @@ public class InitializeCountries {
     public static List<CsvBean> listOfCountries = new ArrayList<>();
 
     static{
-        initializeCountryList();
+        try {
+            initializeCountryList();
+        } catch (CsvParserException e) {
+            LOGGER.error("File could not be parsed due to {} ", e.getMessage());
+        }
     }
 
     /**
      * This method loads the csv of countries to a list of countries
      */
-    public static void initializeCountryList() {
+    public static void initializeCountryList() throws CsvParserException{
 
         try {
             Path path = Paths.get(ClassLoader.getSystemResource("files/countries.csv").toURI());
@@ -39,7 +44,7 @@ public class InitializeCountries {
             loadCountryNameToCountryCodeMap(listOfCountries);
             LOGGER.info("Loaded data for Countries Map");
         } catch (URISyntaxException | IOException e) {
-            LOGGER.error("File not found to csv reader {} ", e.getMessage());
+            throw new CsvParserException("Error while parsing the countries csv");
         }
     }
 

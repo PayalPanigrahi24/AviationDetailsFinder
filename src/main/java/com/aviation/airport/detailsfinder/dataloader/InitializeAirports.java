@@ -2,6 +2,7 @@ package com.aviation.airport.detailsfinder.dataloader;
 
 import com.aviation.airport.detailsfinder.bean.Airports;
 import com.aviation.airport.detailsfinder.bean.CsvBean;
+import com.aviation.airport.detailsfinder.exception.CsvParserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -22,21 +23,26 @@ public class InitializeAirports {
 
     public static Map<String, List<Airports>> airportMap = new HashMap<>();
 
-    static{
-        initializeAirportMap();
+    static {
+        try {
+            initializeAirportMap();
+        } catch (CsvParserException e) {
+            LOGGER.error("File could not be parsed due to {} ", e.getMessage());
+        }
     }
 
     /**
      * This method loads the csv of airport to a list
      */
-    public static void initializeAirportMap() {
+    public static void initializeAirportMap() throws CsvParserException {
         try {
             Path path = Paths.get(ClassLoader.getSystemResource("files/airports.csv").toURI());
             List<CsvBean> listOfAirports = CsvToBeanParser.parseCsvToObject(path, Airports.class);
             loadAirportMap(listOfAirports);
             LOGGER.info("Loaded data for Airport Map");
         } catch (URISyntaxException | IOException e) {
-            LOGGER.error("File not found to csv reader {} ", e.getMessage());
+            throw new CsvParserException("Error while parsing the airport csv");
+
         }
     }
 
